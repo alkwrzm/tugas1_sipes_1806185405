@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Home</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-
+<!--<nav th:replace="fragments/fragment :: navbar('Home')"></nav>-->
+<div class="center center-title">
+    Selamat datang di SIPESAWAT!
+</div>
+<div class="center">
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-success">Lihat semua resep</a>
+        <a class="btn btn-success">Lihat semua resep</a>
+        <a class="btn btn-success">Lihat semua resep</a>
+    </div>
+</div>
 </body>
+<footer th:replace="fragments/fragment ::footer"></footer>
 </html>
