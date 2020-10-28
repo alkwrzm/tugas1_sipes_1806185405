@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Pesawat</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar('View All Pesawat')"></nav>
+<h2>Daftar Seluruh Pesawat</h2>
+<a th:href="@{/pesawat/add/}" class="btn btn-success">+ Tambah Pesawat</a>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">No</th>
+        <th scope="col">Nomor Seri</th>
+        <th scope="col">Tipe Pesawat</th>
+        <th scope="col">Jenis Pesawat</th>
+        <th scope="col">Maskapai</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="pesawat: ${listPesawat}">
+        <td th:text="${pesawat.id}"></td>
+        <td th:text="${pesawat.nomorSeri}"></td>
+        <td th:text="${pesawat.tipe}"></td>
+        <td th:text="${pesawat.maskapai}"></td>
+        <td>
+            <a th:href="@{/pesawat/view/} + ${pesawat.id}" class="btn btn-success">Lihat</a>
+            <a th:href="@{/pesawat/change/} + ${pesawat.id}" class="btn btn-warning">Ubah</a>
+            <a th:href="@{/pesawat/delete/} + ${pesawat.id}" class="btn btn-danger">Hapus</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<section>
+    <a th:href="@{/}">Kembali ke Home</a>
+</section>
+</body>
+</html>

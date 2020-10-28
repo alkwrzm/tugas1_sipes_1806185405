@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Form add pesawat</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-
+<nav th:replace="fragments/fragment :: navbar('Form Add Pesawat')"></nav>
+<h2>Tambah Pesawat</h2>
+<section>
+    <div class="card">
+        <div class="card-body">
+            <form th:action="@{/pesawat/add}" th:object="${pesawat}" method="POST">
+                Maskapai<br>
+                <input type="text" name="maskapai"/>
+                <br>
+                Tanggal Dibuat<br>
+                <input type="text" name="tanggalDibuat"/>
+                <br>
+                Tempat Dibuat<br>
+                <input type="text" name="tempatDibuat"/>
+                <br>
+                Jenis<br>
+                <select name="jenis">
+                    <option value="0">Komersial</option>
+                    <option value="1">Militer</option>
+                    <option value="2">Pribadi</option>
+                </select>
+                <br>
+                Tipe<br>
+                <select name="tipe">
+<!--                    <option th:each="i : ${listTipe}" th:value="${i}" th:text="${i}">-->
+<!--                    </option>-->
+                    <option value="0">1</option>
+                    <option value="1">2</option>
+                    <option value="2">3</option>
+                </select>
+                <br>
+                Teknisi<br>
+                <input type="text" name="catatan"/>
+                <br><br>
+                <button type="submit" value="Submit">Submit</button>
+            </form></div></div></section>
+<a th:href="@{/}">Kembali ke Home</a>
 </body>
 </html>

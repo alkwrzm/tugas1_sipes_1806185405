@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add Pesawat</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-
+<nav th:replace="fragments/fragment :: navbar('Add Pesawat')"></nav>
+<section>
+    <div class="card">
+        <div class="card-body">
+            <h2 th:text="'Pesawat berhasil ditambahkan.'"></h2>
+        </div>
+    </div>
+</section>
+<a href="/pesawat/viewall">Kembali</a>
 </body>
 </html>

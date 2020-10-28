@@ -3,12 +3,14 @@ package apap.tugas.sipes.sipes.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -34,8 +36,9 @@ public class PesawatModel implements Serializable {
     private String tempatDibuat;
 
     @NotNull
-    @Column(name="tenggalDibuat", nullable = false)
+    @Column(name="tanggalDibuat", nullable = false)
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date tanggalDibuat;
 
     @NotNull
@@ -47,6 +50,12 @@ public class PesawatModel implements Serializable {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private TipeModel tipe;
+
+    @OneToMany(mappedBy = "pesawat", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<PenerbanganModel> listPenerbangan;
+
+    @OneToMany(mappedBy = "pesawat", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<PesawatTeknisiModel> listPesawatTeknisi;
 
     public Long getId() {
         return id;
@@ -102,5 +111,21 @@ public class PesawatModel implements Serializable {
 
     public void setTipe(TipeModel tipe) {
         this.tipe = tipe;
+    }
+
+    public List<PenerbanganModel> getListPenerbangan() {
+        return listPenerbangan;
+    }
+
+    public void setListPenerbangan(List<PenerbanganModel> listPenerbangan) {
+        this.listPenerbangan = listPenerbangan;
+    }
+
+    public List<PesawatTeknisiModel> getListPesawatTeknisi() {
+        return listPesawatTeknisi;
+    }
+
+    public void setListPesawatTeknisi(List<PesawatTeknisiModel> listPesawatTeknisi) {
+        this.listPesawatTeknisi = listPesawatTeknisi;
     }
 }
