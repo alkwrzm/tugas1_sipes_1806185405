@@ -22,4 +22,6 @@ public interface PesawatService {
     List<PenerbanganModel> getListPenerbangan();
 
     List<PesawatModel> getListPesawatTua();
+
+    void setUsia(List<PesawatModel> pesawat);
 }

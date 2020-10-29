@@ -26,7 +26,10 @@
     <tr th:each="pesawat: ${listPesawat}">
         <td th:text="${pesawat.id}"></td>
         <td th:text="${pesawat.nomorSeri}"></td>
-        <td th:text="${pesawat.tipe}"></td>
+        <td th:text="${pesawat.tipe.getNama()}"></td>
+        <td th:if="${pesawat.jenisPesawat == 0}">Komersial</td>
+        <td th:if="${pesawat.jenisPesawat == 1}">Militer</td>
+        <td th:if="${pesawat.jenisPesawat == 2}">Pribadi</td>
         <td th:text="${pesawat.maskapai}"></td>
         <td>
             <a th:href="@{/pesawat/} + ${pesawat.id}" class="btn btn-success">Lihat</a>

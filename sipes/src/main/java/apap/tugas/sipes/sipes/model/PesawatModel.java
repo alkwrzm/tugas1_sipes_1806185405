@@ -56,6 +56,16 @@ public class PesawatModel implements Serializable {
     @OneToMany(mappedBy = "pesawat", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<PesawatTeknisiModel> listPesawatTeknisi;
 
+    private Integer usia;
+
+    public Integer getUsia() {
+        return usia;
+    }
+
+    public void setUsia(Integer usia) {
+        this.usia = usia;
+    }
+
     public Long getId() {
         return id;
     }

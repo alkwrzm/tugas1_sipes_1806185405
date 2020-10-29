@@ -54,9 +54,10 @@ public class PesawatController {
     @RequestMapping("/pesawat/pesawat-tua")
     public String cariPesawatTua(Model model) {
         List<PesawatModel> listPesawat = pesawatService.getListPesawatTua();
+        pesawatService.setUsia(listPesawat);
         model.addAttribute("listPesawat", listPesawat);
 
-        return "viewall-pesawat";
+        return "cari-pesawat-tua";
     }
 
 //    @GetMapping("/pesawat/{idPesawat}/tambahPenerbangan")

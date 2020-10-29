@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -36,7 +37,7 @@ public class PesawatServiceImpl implements PesawatService{
 
     @Override
     public List<PesawatModel> getListPesawat() {
-        return null;
+        return pesawatDb.findAll();
     }
 
     @Override
@@ -57,5 +58,14 @@ public class PesawatServiceImpl implements PesawatService{
     @Override
     public void addPenerbangan(PenerbanganModel penerbangan) {
 
+    }
+
+    @Override
+    public void setUsia(List<PesawatModel> pesawat) {
+        for (PesawatModel i:pesawat) {
+            Date date = i.getTanggalDibuat();
+            String[] setring = date.toString().split("-");
+            i.setUsia(2020-Integer.parseInt(setring[0]));
+        }
     }
 }
