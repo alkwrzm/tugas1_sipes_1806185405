@@ -17,13 +17,13 @@
                 <input type="text" name="maskapai"/>
                 <br>
                 Tanggal Dibuat<br>
-                <input type="text" name="tanggalDibuat"/>
+                <input type="date" name="tanggalDibuat"/>
                 <br>
                 Tempat Dibuat<br>
                 <input type="text" name="tempatDibuat"/>
                 <br>
                 Jenis<br>
-                <select name="jenis">
+                <select name="jenisPesawat">
                     <option value="0">Komersial</option>
                     <option value="1">Militer</option>
                     <option value="2">Pribadi</option>
@@ -31,15 +31,12 @@
                 <br>
                 Tipe<br>
                 <select name="tipe">
-<!--                    <option th:each="i : ${listTipe}" th:value="${i}" th:text="${i}">-->
-<!--                    </option>-->
-                    <option value="0">1</option>
-                    <option value="1">2</option>
-                    <option value="2">3</option>
+                    <option th:each="i : ${listTipe}" th:value="${i}" th:text="${i.nama}">
+                    </option>
                 </select>
                 <br>
                 Teknisi<br>
-                <input type="text" name="catatan"/>
+                <input type="text" name="teknisi"/>
                 <br><br>
                 <button type="submit" value="Submit">Submit</button>
             </form></div></div></section>

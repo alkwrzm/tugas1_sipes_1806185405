@@ -14,7 +14,7 @@
         <div class="card-body">
             <form th:action="@{/penerbangan/add}" th:object="${penerbangan}" method="POST">
                 Kode Penerbangan<br>
-                <input type="text" name="kodePenerbangan"/>
+                <input type="text" name="nomorPenerbangan"/>
                 <br>
                 Kode Bandara Asal<br>
                 <input type="text" name="kodeBandaraAsal"/>
@@ -23,7 +23,7 @@
                 <input type="text" name="kodeBandaraTujuan"/>
                 <br>
                 Waktu Keberangkatan<br>
-                <input type="text" name="waktuBerangkat"/>
+                <input type="datetime-local" name="waktuBerangkat"/>
                 <br><br>
                 <button type="submit" value="Submit">Submit</button>
             </form></div></div></section>

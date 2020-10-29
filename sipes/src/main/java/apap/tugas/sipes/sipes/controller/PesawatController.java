@@ -22,13 +22,7 @@ public class PesawatController {
     @Autowired
     private TipeService tipeService;
 
-    @GetMapping("/pesawat")
-    private String viewAllPesawat(){
-
-        return "viewall-pesawat";
-    }
-
-    @GetMapping("/pesawat/view/{idPesawat}")
+    @GetMapping("/pesawat/{idPesawat}")
     public String viewDetailPesawatPath(
             @PathVariable Long idPesawat,
             Model model){
@@ -41,8 +35,8 @@ public class PesawatController {
 
     }
 
-    @RequestMapping("/pesawat/viewall")
-    public String listResep(Model model) {
+    @RequestMapping("/pesawat")
+    public String listPesawat(Model model) {
         List<PesawatModel> listPesawat = pesawatService.getListPesawat();
 
 
@@ -51,22 +45,45 @@ public class PesawatController {
         return "viewall-pesawat";
     }
 
+//    @GetMapping("/pesawat/{idPesawat}/tambahPenerbangan")
+//    private String addResepFormPage(
+//            @PathVariable Long noResep,
+//            Model model
+//    ){
+//        ObatModel obat = new ObatModel();
+//        ResepModel resep = resepService.getResepByNomorResep(noResep);
+//        obat.setResepModel(resep);
+//        model.addAttribute("obat", obat);
+//
+//        return "form-add-obat";
+//
+//    }
 
-    @GetMapping("/pesawat/add")
+//    @PostMapping("/pesawat/{idPesawat}/tambahPenerbangan")
+//    private String addObatSubmit(
+//            @ModelAttribute PesawatModel pesawat,
+//            Model model
+//    ){
+//        pesawatService.addPesawat(pesawat);
+//        model.addAttribute("nama",obat.getNama());
+//
+//        return "add-obat";
+//    }
+
+    @GetMapping("/pesawat/tambah")
     private String addPesawatFormPage(Model model){
         model.addAttribute("pesawat", new PesawatModel());
+        List<TipeModel> listTipe = tipeService.getListTipe();
+        model.addAttribute("listTipe", listTipe);
         return "form-add-pesawat";
     }
 
-    @PostMapping("/pesawat/add")
+    @PostMapping("/pesawat/tambah")
     private String addPesawatSubmit(
             @ModelAttribute PesawatModel pesawat,
             Model model){
         pesawatService.addPesawat(pesawat);
-        List<TipeModel> listTipe = tipeService.getListTipe();
-        model.addAttribute("listTipe", listTipe);
         model.addAttribute("id", pesawat.getId());
-
         return "add-pesawat";
     }
 
@@ -89,7 +106,7 @@ public class PesawatController {
 
     }
 
-    @GetMapping("/pesawat/change/{idPesawat}")
+    @GetMapping("/pesawat/ubah/{idPesawat}")
     private String changePesawatFormPage(
             @PathVariable Long idPesawat,
             Model model){
@@ -99,7 +116,7 @@ public class PesawatController {
         return "form-update-pesawat";
     }
 
-    @PostMapping("/pesawat/change")
+    @PostMapping("/pesawat/ubah")
     private String changePesawatFormSubmit(
             @ModelAttribute PesawatModel pesawat,
             Model model){

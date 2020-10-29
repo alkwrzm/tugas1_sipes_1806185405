@@ -1,5 +1,6 @@
 package apap.tugas.sipes.sipes.service;
 
+import apap.tugas.sipes.sipes.model.PenerbanganModel;
 import apap.tugas.sipes.sipes.model.PesawatModel;
 import apap.tugas.sipes.sipes.repository.PesawatDb;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ public class PesawatServiceImpl implements PesawatService{
 
     @Override
     public void addPesawat(PesawatModel pesawat) {
+        pesawatDb.save(pesawat);
 
     }
 
@@ -39,5 +41,16 @@ public class PesawatServiceImpl implements PesawatService{
     @Override
     public PesawatModel getPesawatById(Long Id) {
         return null;
+    }
+
+    @Override
+    public List<PenerbanganModel> getListPenerbangan() {
+        return null;
+    }
+
+    @Override
+    public void addPenerbangan(PenerbanganModel penerbangan) {
+
+
     }
 }

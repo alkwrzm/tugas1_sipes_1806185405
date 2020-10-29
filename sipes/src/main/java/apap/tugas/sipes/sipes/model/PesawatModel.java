@@ -37,7 +37,6 @@ public class PesawatModel implements Serializable {
 
     @NotNull
     @Column(name="tanggalDibuat", nullable = false)
-    @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date tanggalDibuat;
 
@@ -77,9 +76,7 @@ public class PesawatModel implements Serializable {
         return nomorSeri;
     }
 
-    public void setNomorSeri(String nomorSeri) {
-        this.nomorSeri = nomorSeri;
-    }
+    public void setNomorSeri(String nomorSeri) { this.nomorSeri = nomorSeri;}
 
     public String getTempatDibuat() {
         return tempatDibuat;

@@ -1,7 +1,6 @@
 package apap.tugas.sipes.sipes.repository;
 
 import apap.tugas.sipes.sipes.model.PenerbanganModel;
-import apap.tugas.sipes.sipes.model.PesawatModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

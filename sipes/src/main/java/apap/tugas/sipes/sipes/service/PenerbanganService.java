@@ -14,5 +14,5 @@ public interface PenerbanganService {
 
     List<PenerbanganModel> getListPenerbangan();
 
-    PenerbanganModel getPenerbanganById(Long Id);
+    PenerbanganModel getPenerbanganById(Long id);
 }

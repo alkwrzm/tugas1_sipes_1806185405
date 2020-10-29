@@ -22,26 +22,31 @@ public class PenerbanganServiceImpl implements PenerbanganService{
 
     @Override
     public void addPenerbangan(PenerbanganModel penerbangan) {
+        penerbanganDb.save(penerbangan);
 
     }
 
     @Override
     public void deletePenerbangan(PenerbanganModel penerbangan) {
+        penerbanganDb.delete(penerbangan);
 
     }
 
     @Override
     public PenerbanganModel updatePenerbangan(PenerbanganModel penerbangan) {
-        return null;
+
+        penerbanganDb.save(penerbangan);
+
+        return penerbangan;
     }
 
     @Override
     public List<PenerbanganModel> getListPenerbangan() {
-        return null;
+        return penerbanganDb.findAll();
     }
 
     @Override
-    public PenerbanganModel getPenerbanganById(Long Id) {
-        return null;
+    public PenerbanganModel getPenerbanganById(Long id) {
+        return penerbanganDb.findById(id).get();
     }
 }
