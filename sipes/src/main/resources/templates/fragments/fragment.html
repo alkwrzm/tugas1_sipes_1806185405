@@ -26,7 +26,7 @@
         th:fragment="navbar(NamaPage)"
         class="navbar navbar-expand-lg navbar-light bg-light"
 >
-    <a class="navbar-brand font-weight-bold text-success" href="#">SIPESAWAT</a>
+    <a class="navbar-brand font-weight-bold text-success" th:href="@{/}">SIPESAWAT</a>
     <button
             class="navbar-toggler"
             type="button"
@@ -40,8 +40,17 @@
     </button>
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto navbar navbar-default">
+            <a class="nav-item nav-link active text-secondary" th:href="@{/pesawat}">
+                Pesawat<span class="sr-only">(current)</span>
+            </a>
+            <a class="nav-item nav-link active text-secondary" th:href="@{/penerbangan}">
+                Penerbangan<span class="sr-only">(current)</span>
+            </a>
+            <a class="nav-item nav-link active text-secondary" th:href="@{/pesawat/pesawat-tua}">
+                Cari<span class="sr-only">(current)</span>
+            </a>
             <a class="nav-item nav-link active text-secondary" th:href="@{/}">
-                Home<span class="sr-only">(current)</span>
+                Filter<span class="sr-only">(current)</span>
             </a>
         </ul>
         <ul class="nav navbar-nav navbar-right">

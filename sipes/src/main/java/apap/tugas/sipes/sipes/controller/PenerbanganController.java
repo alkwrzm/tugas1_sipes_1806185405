@@ -24,7 +24,7 @@ public class PenerbanganController {
     @Autowired
     private PenerbanganService penerbanganService;
 
-    @GetMapping("/penerbangan/view/{idPenerbangan}")
+    @GetMapping("/penerbangan/{idPenerbangan}")
     public String viewDetailPenerbanganPath(
             @PathVariable Long idPenerbangan,
             Model model){
@@ -64,7 +64,7 @@ public class PenerbanganController {
         return "add-penerbangan";
     }
 
-    @RequestMapping("/penerbangan/delete/{idPenerbangan}")
+    @RequestMapping("/penerbangan/hapus/{idPenerbangan}")
     private String deletePenerbanganFromPage(
             @PathVariable Long idPenerbangan,
             Model model){
@@ -73,18 +73,11 @@ public class PenerbanganController {
         PenerbanganModel penerbangan = penerbanganService.getPenerbanganById(idPenerbangan);
         penerbanganService.deletePenerbangan(penerbangan);
 
-//        if(resep.getListObat().size() < 1) {
-//            resepService.deleteResep(noResep);
-//            return "delete-resep";
-//        }else {
-//            return "gagal-delete-resep";
-//        }
-
         return "delete-penerbangan";
 
     }
 
-    @GetMapping("/penerbangan/change/{idPenerbangan}")
+    @GetMapping("/penerbangan/ubah/{idPenerbangan}")
     private String changePenerbanganFormPage(
             @PathVariable Long idPenerbangan,
             Model model){
@@ -94,7 +87,7 @@ public class PenerbanganController {
         return "form-update-penerbangan";
     }
 
-    @PostMapping("/penerbangan/change")
+    @PostMapping("/penerbangan/ubah")
     private String changePenerbanganFormSubmit(
             @ModelAttribute PenerbanganModel penerbangan,
             Model model){

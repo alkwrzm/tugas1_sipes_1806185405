@@ -30,9 +30,9 @@
         <td th:text="${penerbangan.kodeBandaraTujuan}"></td>
         <td th:text="${penerbangan.waktuBerangkat}"></td>
         <td>
-            <a th:href="@{/penerbangan/view/} + ${penerbangan.id}" class="btn btn-success">Lihat</a>
-            <a th:href="@{/penerbangan/change/} + ${penerbangan.id}" class="btn btn-warning">Ubah</a>
-            <a th:href="@{/penerbangan/delete/} + ${penerbangan.id}" class="btn btn-danger">Hapus</a>
+            <a th:href="@{/penerbangan/} + ${penerbangan.id}" class="btn btn-success">Lihat</a>
+            <a th:href="@{/penerbangan/ubah/} + ${penerbangan.id}" class="btn btn-warning">Ubah</a>
+            <a th:href="@{/penerbangan/hapus/} + ${penerbangan.id}" class="btn btn-danger">Hapus</a>
         </td>
     </tr>
     </tbody>

@@ -29,15 +29,12 @@
         <td th:text="${pesawat.tipe}"></td>
         <td th:text="${pesawat.maskapai}"></td>
         <td>
-            <a th:href="@{/pesawat/view/} + ${pesawat.id}" class="btn btn-success">Lihat</a>
-            <a th:href="@{/pesawat/change/} + ${pesawat.id}" class="btn btn-warning">Ubah</a>
-            <a th:href="@{/pesawat/delete/} + ${pesawat.id}" class="btn btn-danger">Hapus</a>
+            <a th:href="@{/pesawat/} + ${pesawat.id}" class="btn btn-success">Lihat</a>
+            <a th:href="@{/pesawat/ubah/} + ${pesawat.id}" class="btn btn-warning">Ubah</a>
+            <a th:href="@{/pesawat/hapus/} + ${pesawat.id}" class="btn btn-danger">Hapus</a>
         </td>
     </tr>
     </tbody>
 </table>
-<section>
-    <a th:href="@{/}">Kembali ke Home</a>
-</section>
 </body>
 </html>

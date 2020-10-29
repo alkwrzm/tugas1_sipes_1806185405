@@ -25,6 +25,7 @@ public class PesawatServiceImpl implements PesawatService{
 
     @Override
     public void deletePesawat(PesawatModel pesawat) {
+        pesawatDb.delete(pesawat);
 
     }
 

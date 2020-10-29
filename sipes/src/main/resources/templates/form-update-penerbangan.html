@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Update Data Penerbangan</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-
+<nav th:replace="fragments/fragment :: navbar('Form Update Penerbangan')"></nav>
+<h2>Ubah Data Penerbangan</h2>
+<section>
+    <div class="card">
+        <div class="card-body">
+            <form th:action="@{/penerbangan/ubah}" th:object="${penerbangan}" method="POST">
+                <input type="hidden" th:field="*{id}"/>
+                Nomort Penerbangan <br>
+                <input type="text" name="nomorPenerbangan" th:value="*{nomorPenerbangan}"/>
+                <br>
+                Kode Bandara Asal<br>
+                <input type="text" name="kodeBandaraAsal" th:value="*{kodeBandaraAsal}"/>
+                <br>
+                Kode Bandara Tujuan <br>
+                <input type="text" name="kodeBandaraTujuan" th:value="*{kodeBandaraTujuan}"/>
+                <br>
+                Waktu Berangakt<br>
+                <input type="datetime-local" name="waktuBerangkat" th:value="*{waktuBerangkat}"/>
+                <br><br>
+                <button type="submit" value="Submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>
+<a th:href="@{/}">Kembali ke Home</a>
 </body>
 </html>

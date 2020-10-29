@@ -1,10 +1,12 @@
 package apap.tugas.sipes.sipes.service;
 
+import apap.tugas.sipes.sipes.model.TeknisiModel;
 import apap.tugas.sipes.sipes.repository.TeknisiDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -14,4 +16,14 @@ public class TeknisiServiceImpl implements TeknisiService{
     TeknisiDb teknisiDb;
 
     public TeknisiServiceImpl(){super();}
+
+    @Override
+    public void addTeknisi(TeknisiModel teknisi) {
+        teknisiDb.save(teknisi);
+    }
+
+    @Override
+    public List<TeknisiModel> getListTeknisi() {
+        return teknisiDb.findAll();
+    }
 }

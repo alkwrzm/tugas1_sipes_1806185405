@@ -2,8 +2,10 @@ package apap.tugas.sipes.sipes.controller;
 
 import apap.tugas.sipes.sipes.model.PesawatModel;
 import apap.tugas.sipes.sipes.model.PesawatTeknisiModel;
+import apap.tugas.sipes.sipes.model.TeknisiModel;
 import apap.tugas.sipes.sipes.model.TipeModel;
 import apap.tugas.sipes.sipes.service.PesawatService;
+import apap.tugas.sipes.sipes.service.TeknisiService;
 import apap.tugas.sipes.sipes.service.TipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 @Controller
 public class PesawatController {
@@ -21,6 +24,9 @@ public class PesawatController {
 
     @Autowired
     private TipeService tipeService;
+
+    @Autowired
+    private TeknisiService teknisiService;
 
     @GetMapping("/pesawat/{idPesawat}")
     public String viewDetailPesawatPath(
@@ -80,8 +86,16 @@ public class PesawatController {
 
     @GetMapping("/pesawat/tambah")
     private String addPesawatFormPage(Model model){
-        model.addAttribute("pesawat", new PesawatModel());
+        PesawatModel pesawat = new PesawatModel();
+
         List<TipeModel> listTipe = tipeService.getListTipe();
+        List<TeknisiModel> listTeknisi = teknisiService.getListTeknisi();
+        List<TeknisiModel> listAvailableTeknisi = new ArrayList<>();
+        listAvailableTeknisi.add(new TeknisiModel());
+
+//        pesawat.(listAvailableTeknisi);
+
+        model.addAttribute("pesawat", pesawat);
         model.addAttribute("listTipe", listTipe);
         return "form-add-pesawat";
     }
