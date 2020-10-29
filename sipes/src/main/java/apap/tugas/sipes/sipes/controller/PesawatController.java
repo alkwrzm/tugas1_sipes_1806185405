@@ -45,6 +45,14 @@ public class PesawatController {
         return "viewall-pesawat";
     }
 
+    @RequestMapping("/pesawat/pesawat-tua")
+    public String cariPesawatTua(Model model) {
+        List<PesawatModel> listPesawat = pesawatService.getListPesawatTua();
+        model.addAttribute("listPesawat", listPesawat);
+
+        return "viewall-pesawat";
+    }
+
 //    @GetMapping("/pesawat/{idPesawat}/tambahPenerbangan")
 //    private String addResepFormPage(
 //            @PathVariable Long noResep,

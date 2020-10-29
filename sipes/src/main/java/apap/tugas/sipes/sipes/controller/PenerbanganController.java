@@ -30,10 +30,11 @@ public class PenerbanganController {
             Model model){
         PenerbanganModel penerbangan = penerbanganService.getPenerbanganById(idPenerbangan);
         model.addAttribute("penerbangan", penerbangan);
-        if(penerbangan. == null){
+        PesawatModel pesawat = penerbangan.getPesawat();
+        if(pesawat.getNomorSeri() == null){
             String noSeri = null;
         }
-        String noSeri = penerbangan.getPesawat().getNomorSeri();
+        String noSeri = pesawat.getNomorSeri();
         model.addAttribute("noSeriPesawat", noSeri);
         return "view-penerbangan";
 

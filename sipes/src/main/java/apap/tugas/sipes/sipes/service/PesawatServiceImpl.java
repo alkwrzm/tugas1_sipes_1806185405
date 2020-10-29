@@ -49,8 +49,12 @@ public class PesawatServiceImpl implements PesawatService{
     }
 
     @Override
-    public void addPenerbangan(PenerbanganModel penerbangan) {
+    public List<PesawatModel> getListPesawatTua() {
+        return pesawatDb.findByTanggalDibuat();
+    }
 
+    @Override
+    public void addPenerbangan(PenerbanganModel penerbangan) {
 
     }
 }

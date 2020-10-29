@@ -20,4 +20,6 @@ public interface PesawatService {
     void addPenerbangan(PenerbanganModel penerbangan);
 
     List<PenerbanganModel> getListPenerbangan();
+
+    List<PesawatModel> getListPesawatTua();
 }
