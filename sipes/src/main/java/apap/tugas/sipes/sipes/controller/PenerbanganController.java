@@ -59,7 +59,7 @@ public class PenerbanganController {
             @ModelAttribute PenerbanganModel penerbangan,
             Model model){
         penerbanganService.addPenerbangan(penerbangan);
-        model.addAttribute("idPenerbangan", penerbangan.getId());
+        model.addAttribute("nomorPenerbangan", penerbangan.getNomorPenerbangan());
 
         return "add-penerbangan";
     }
@@ -92,7 +92,7 @@ public class PenerbanganController {
             @ModelAttribute PenerbanganModel penerbangan,
             Model model){
         PenerbanganModel penerbanganModel = penerbanganService.updatePenerbangan(penerbangan);
-        model.addAttribute("idPenerbangan", penerbangan.getId());
+        model.addAttribute("nomorPenerbangan", penerbanganModel.getNomorPenerbangan());
 
         return "update-penerbangan";
     }

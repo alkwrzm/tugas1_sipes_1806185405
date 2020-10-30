@@ -1,5 +1,6 @@
 package apap.tugas.sipes.sipes.model;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -8,7 +9,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "pesawatTeknisi")
+@Table(name = "pesawat_teknisi")
 public class PesawatTeknisiModel implements Serializable {
 
     @Id

@@ -12,7 +12,7 @@
 <section>
     <div class="card">
         <div class="card-body">
-            <form th:action="@{/pesawat/add}" th:object="${pesawat}" method="POST">
+            <form th:action="@{/pesawat/tambah}" th:object="${pesawat}" method="POST">
                 Maskapai<br>
                 <input type="text" name="maskapai"/>
                 <br>
@@ -31,15 +31,36 @@
                 <br>
                 Tipe<br>
                 <select name="tipe">
-                    <option th:each="i : ${listTipe}" th:value="${i.nama}" th:text="${i.nama}">
+                    <option th:each="i : ${listTipe}" th:value="${i.id}" th:text="${i.nama}">
                     </option>
                 </select>
                 <br>
                 Teknisi<br>
-                <input type="text" name="teknisi"/>
-                <br><br>
-                <button type="submit" value="Submit">Submit</button>
-            </form></div></div></section>
+                <table>
+                    <tbody>
+                    <input type="hidden" th:field="${pesawat}"/>
+                    <tr th:each="teknisi, iterationStatus : *{listPesawatTeknisi}">
+                        <td>
+                            <select name="teknisi" th:field="*{listPesawatTeknisi[__${iterationStatus.index}__]}">
+                                <option th:each="i : ${listPesawatTeknisi}" th:value="${i.getTeknisi().nama}" th:text="${i.getTeknisi().nama}">
+                                </option>
+                            </select>
+                        </td>
+                        <td>
+                            <button th:value="${iterationStatus.index}" class="btn btn-danger" type="submit"
+                                    name="deleteRow">Hapus</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <section>
+                    <button class="btn btn-primary" type="submit" name="tambahteknisi">Tambah Row</button>
+                    <button class="btn btn-success" type="submit" name="save">Submit</button>
+                </section>
+            </form>
+        </div>
+    </div>
+</section>
 <a th:href="@{/}">Kembali ke Home</a>
 </body>
 </html>

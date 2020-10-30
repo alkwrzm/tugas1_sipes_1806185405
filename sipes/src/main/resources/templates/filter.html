@@ -1,10 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <script>
+        $(document).ready(function () {
+            // Setup - add a text input to each footer cell
+            $('#table tfoot th').each(function () {
+                var title = $(this).text();
+                $(this).html('<input type="text" placeholder="Search here.." />');
+            });
 
+            // DataTable
+            var table = $('#table').DataTable({
+                initComplete: function () {
+                    // Apply the search
+                    this.api().columns().every(function () {
+                        var that = this;
+
+                        $('input', this.footer()).on('keyup change clear', function () {
+                            if (that.search() !== this.value) {
+                                that
+                                    .search(this.value)
+                                    .draw();
+                            }
+                        });
+                    });
+                }
+            });
+        });
+    </script>
+    <style>
+        tfoot input {
+            width: 100%;
+            padding: 3px;
+            box-sizing: border-box;}
+    </style>
+    <meta charset="UTF-8">
+    <title>Filter Pesawat</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar('Filter Pesawat')"></nav>
+<h2>Cari Pesawat</h2>
+<section>
+    <table id="table" class="display" style="width:100%">
+        <tfoot>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+        </tr>
+        </tfoot>
+    </table>
+
+<!--    <div class="card">-->
+<!--        <div class="card-body">-->
+<!--            <table>-->
+<!--                <tbody>-->
+<!--                    <tr>-->
+<!--                        <th>-->
+<!--                            <select name="penerbangan">-->
+<!--                                <option th:each="i : ${listPenerbangan}" th:value="${i.nomorPenerbangan}" th:text="${i.nomorPenerbangan}">-->
+<!--                                </option>-->
+<!--                            </select>-->
+<!--                        </th>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <th>-->
+<!--                            <select name="tipe">-->
+<!--                                <option th:each="i : ${listTipe}" th:value="${i.nama}" th:text="${i.nama}">-->
+<!--                                </option>-->
+<!--                            </select>-->
+<!--                        </th>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <th>-->
+<!--                            <select name="teknisi">-->
+<!--                                <option th:each="i : ${listTeknisi}" th:value="${i.nama}" th:text="${i.nama}">-->
+<!--                                </option>-->
+<!--                            </select>-->
+<!--                        </th>-->
+<!--                    </tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--    </div>-->
+</section>
+<!--<section>-->
+<!--<table class="table">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th scope="col">No</th>-->
+<!--        <th scope="col">Nomor Seri</th>-->
+<!--        <th scope="col">Jenis</th>-->
+<!--        <th scope="col">Tipe</th>-->
+<!--        <th scope="col">Maskapai</th>-->
+<!--        <th scope="col">Nomor Penerbangan</th>-->
+<!--        <th scope="col">Teknisi</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="pesawat: ${listPesawat}">-->
+<!--        <td th:text="${pesawat.id}"></td>-->
+<!--        <td th:text="${pesawat.nomorSeri}"></td>-->
+<!--        <td th:text="${pesawat.jenisPesawat}"></td>-->
+<!--        <td th:text="${pesawat.tipe}"></td>-->
+<!--        <td th:text="${pesawat.maskapai}"></td>-->
+<!--        <td th:text="${pesawat.maskapai}"></td> ##masih salah##-->
+<!--        <td th:text="${pesawat.teknisi}"></td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
+<!--</section>-->
 </body>
 </html>

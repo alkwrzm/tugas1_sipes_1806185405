@@ -2,6 +2,7 @@ package apap.tugas.sipes.sipes.service;
 
 import apap.tugas.sipes.sipes.model.PenerbanganModel;
 import apap.tugas.sipes.sipes.model.PesawatModel;
+import apap.tugas.sipes.sipes.model.TeknisiModel;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface PesawatService {
 
     List<PesawatModel> getListPesawat();
 
-    PesawatModel getPesawatById(Long Id);
+    PesawatModel getPesawatById(Long id);
 
     void addPenerbangan(PenerbanganModel penerbangan);
 

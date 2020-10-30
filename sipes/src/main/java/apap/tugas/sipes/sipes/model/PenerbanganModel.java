@@ -43,7 +43,7 @@ public class PenerbanganModel implements Serializable {
     @JoinColumn(name = "idPesawat", referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private PesawatModel pesawat;
+    private PesawatModel pesawatPenerbangan;
 
     public Long getId() {
         return id;
@@ -86,11 +86,11 @@ public class PenerbanganModel implements Serializable {
     }
 
     public PesawatModel getPesawat() {
-        return pesawat;
+        return pesawatPenerbangan;
     }
 
     public void setPesawat(PesawatModel pesawat) {
-        this.pesawat = pesawat;
+        this.pesawatPenerbangan = pesawat;
     }
 
 }

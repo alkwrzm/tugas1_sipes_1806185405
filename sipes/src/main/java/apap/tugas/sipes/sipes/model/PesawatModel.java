@@ -50,7 +50,7 @@ public class PesawatModel implements Serializable {
     @JsonIgnore
     private TipeModel tipe;
 
-    @OneToMany(mappedBy = "pesawat", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "pesawatPenerbangan", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<PenerbanganModel> listPenerbangan;
 
     @OneToMany(mappedBy = "pesawat", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -134,5 +134,13 @@ public class PesawatModel implements Serializable {
 
     public void setListPesawatTeknisi(List<PesawatTeknisiModel> listPesawatTeknisi) {
         this.listPesawatTeknisi = listPesawatTeknisi;
+    }
+
+    public List<TeknisiModel> getListTeknisi(){
+        List<TeknisiModel> listTeknisi = null;
+        for (PesawatTeknisiModel i: listPesawatTeknisi
+        ) { listTeknisi.add(i.getTeknisi());
+        }
+        return listTeknisi;
     }
 }

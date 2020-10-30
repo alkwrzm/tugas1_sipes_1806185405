@@ -2,7 +2,9 @@ package apap.tugas.sipes.sipes.service;
 
 import apap.tugas.sipes.sipes.model.PenerbanganModel;
 import apap.tugas.sipes.sipes.model.PesawatModel;
+import apap.tugas.sipes.sipes.model.TeknisiModel;
 import apap.tugas.sipes.sipes.repository.PesawatDb;
+import apap.tugas.sipes.sipes.repository.TeknisiDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,10 @@ import java.util.List;
 public class PesawatServiceImpl implements PesawatService{
     @Autowired
     PesawatDb pesawatDb;
+
+    @Autowired
+    TeknisiDb teknisiDb;
+
 
     public PesawatServiceImpl(){super();}
 
@@ -41,8 +47,8 @@ public class PesawatServiceImpl implements PesawatService{
     }
 
     @Override
-    public PesawatModel getPesawatById(Long Id) {
-        return null;
+    public PesawatModel getPesawatById(Long id) {
+        return pesawatDb.findById(id).get();
     }
 
     @Override

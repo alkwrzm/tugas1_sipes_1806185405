@@ -9,4 +9,6 @@ public interface TeknisiService {
     void addTeknisi(TeknisiModel teknisi);
 
     List<TeknisiModel> getListTeknisi();
+
+    TeknisiModel getTeknisiById(Long id);
 }

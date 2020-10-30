@@ -24,10 +24,8 @@ public class HomeController {
         return "cari-pesawat-tua";
     }
 
-    @GetMapping("/pesawat/filter/{input}")
+    @GetMapping("/pesawat/filter")
     private String filter(
-            @PathVariable String input,
-            Model model
 
     ){
         return "filter";

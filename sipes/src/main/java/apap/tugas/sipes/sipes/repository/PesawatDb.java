@@ -17,6 +17,4 @@ public interface PesawatDb extends JpaRepository<PesawatModel, Long> {
             "extract(year from tanggal_dibuat)) > 9  ",nativeQuery = true)
     List<PesawatModel> findByTanggalDibuat();
 
-
-
 }

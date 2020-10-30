@@ -11,6 +11,7 @@ import java.util.List;
 @Table(name = "teknisi")
 public class TeknisiModel implements Serializable {
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
