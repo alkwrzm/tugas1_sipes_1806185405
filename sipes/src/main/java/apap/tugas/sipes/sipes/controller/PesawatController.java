@@ -40,6 +40,10 @@ public class PesawatController {
 //        for (PesawatTeknisiModel i: listTeknisiPesawat
 //             ) { listTeknisi.add(i.getTeknisi());
 //        }
+        List <PenerbanganModel> listPenerbangan = penerbanganService.getListPenerbangan();
+        List <PenerbanganModel> listPenerbanganPesawat = pesawat.getListPenerbangan();
+        model.addAttribute("listPenerbangan", listPenerbangan);
+        model.addAttribute("penerbanganAda", listPenerbanganPesawat);
         model.addAttribute("pesawat", pesawat);
         model.addAttribute("listTeknisi", listTeknisiPesawat);
 
@@ -66,59 +70,30 @@ public class PesawatController {
         return "cari-pesawat-tua";
     }
 
-    @GetMapping("/pesawat/{id}/tambah-penerbangan")
-    public String assignpesawat_penerbangan(
-            @PathVariable Long id,
-            Model model
-    ){
+    @PostMapping("/pesawat/{id}/tambah-penerbangan")
+    public String addPenerbanganPesawat(
+            @ModelAttribute PenerbanganModel penerbangan,
+            @PathVariable(value = "id") Long id,
+            @RequestParam("idPenerbangan") Long idPenerbangan,
+            Model model){
+        long a = 2;
+        PenerbanganModel penerbanganModeltarget = penerbanganService.getPenerbanganById(idPenerbangan);
+
         PesawatModel pesawat = pesawatService.getPesawatById(id);
-        List<PenerbanganModel> penerbanganList = penerbanganService.getListPenerbangan();
-        List<PesawatTeknisiModel> listTeknisi =  pesawat.getListPesawatTeknisi();
-        List<PenerbanganModel> listPenerbangan = new ArrayList<PenerbanganModel>();
-        listPenerbangan.add(new PenerbanganModel());
-        pesawat.setListPenerbangan(listPenerbangan);
+        penerbanganService.addPesawat(pesawat, penerbanganModeltarget);
 
-        model.addAttribute("listKosong", listPenerbangan);
-        model.addAttribute("listPenerbangan", penerbanganList);
+        List<PesawatTeknisiModel> listPesawatTeknisi = pesawat.getListPesawatTeknisi();
+        List <PenerbanganModel> listPenerbangan = penerbanganService.getListPenerbangan();
+        List <PenerbanganModel> listPenerbanganPesawat = pesawat.getListPenerbangan();
+        model.addAttribute("listPenerbangan", listPenerbangan);
+        model.addAttribute("penerbanganAda", listPenerbanganPesawat);
         model.addAttribute("pesawat", pesawat);
-        model.addAttribute("listTeknisi", listTeknisi);
+        model.addAttribute("listTeknisi", listPesawatTeknisi);
 
-        return "tambah-penerbangan-pesawat";
-    }
+        String notifikasi = "Penerbangan dengan nomor "+penerbanganModeltarget.getNomorPenerbangan()+" berhasil ditambahkan!";
+        model.addAttribute("notifikasi", notifikasi);
 
-    @PostMapping ("/pesawat/{id}/tambah-penerbangan")
-    public String assignpesawat(
-            @PathVariable Long id, @ModelAttribute PesawatModel pesawat,
-            Model model
-    ){
-        //get id penerbangan arraylist index 0
-        Long idpenerbangan = pesawat.getListPenerbangan().get(0).getId();
-        PenerbanganModel penerbangan = penerbanganService.getPenerbanganById(idpenerbangan);
-
-        PesawatModel tempat_pesawat = pesawatService.getPesawatById(id);
-
-        tempat_pesawat.getListPenerbangan().add(penerbangan);
-        pesawatService.updatePesawat(tempat_pesawat);
-
-
-        List<PesawatTeknisiModel> listTeknisi =  pesawat.getListPesawatTeknisi();
-
-
-        penerbangan.setPesawat(tempat_pesawat);
-        penerbanganService.updatePenerbangan(penerbangan);
-        List<PenerbanganModel> listPenerbangan = new ArrayList<PenerbanganModel>();
-        listPenerbangan.add(new PenerbanganModel());
-        pesawat.setListPenerbangan(listPenerbangan);
-        List<PenerbanganModel> penerbanganList = penerbanganService.getListPenerbangan();
-
-        pesawat = pesawatService.getPesawatById(pesawat.getId());
-
-        model.addAttribute("listKosong", listPenerbangan);
-        model.addAttribute("allPenerbangan", penerbanganList);
-        model.addAttribute("pesawat", pesawat);
-        model.addAttribute("listTeknisi", listTeknisi);
-
-        return "tambah-penerbangan";
+        return "view-pesawat";
     }
 
     @GetMapping("/pesawat/tambah")

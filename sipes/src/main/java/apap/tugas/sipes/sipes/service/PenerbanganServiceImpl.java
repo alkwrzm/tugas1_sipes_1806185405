@@ -49,4 +49,11 @@ public class PenerbanganServiceImpl implements PenerbanganService{
     public PenerbanganModel getPenerbanganById(Long id) {
         return penerbanganDb.findById(id).get();
     }
+
+    @Override
+    public PenerbanganModel addPesawat(PesawatModel pesawatModel, PenerbanganModel penerbanganModel){
+        penerbanganModel.setPesawat(pesawatModel);
+        penerbanganDb.save(penerbanganModel);
+        return penerbanganModel;
+    }
 }
