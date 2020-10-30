@@ -1,10 +1,7 @@
 package apap.tugas.sipes.sipes.controller;
 
 import apap.tugas.sipes.sipes.model.*;
-import apap.tugas.sipes.sipes.service.PenerbanganService;
-import apap.tugas.sipes.sipes.service.PesawatService;
-import apap.tugas.sipes.sipes.service.TeknisiService;
-import apap.tugas.sipes.sipes.service.TipeService;
+import apap.tugas.sipes.sipes.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -28,6 +25,9 @@ public class PesawatController {
 
     @Autowired
     private PenerbanganService penerbanganService;
+
+    @Autowired
+    PesawatTeknisiService pesawatTeknisiService;
 
     @GetMapping("/pesawat/{idPesawat}")
     public String viewDetailPesawatPath(
@@ -99,14 +99,22 @@ public class PesawatController {
     @GetMapping("/pesawat/tambah")
     public String addPesawatFormPage(Model model){
         PesawatModel pesawat = new PesawatModel();
+        TeknisiModel teknisiModel = new TeknisiModel();
+        PesawatTeknisiModel pesawatTeknisiModel = new PesawatTeknisiModel();
 
         List<TipeModel> listTipe = tipeService.getListTipe();
         List<TeknisiModel> listTeknisi = teknisiService.getListTeknisi();
         List<PesawatTeknisiModel> listAvailableTeknisi = new ArrayList<>();
 
+        pesawatTeknisiModel.setTeknisi(teknisiModel);
+        pesawatTeknisiModel.setPesawat(pesawat);
+        listAvailableTeknisi.add(pesawatTeknisiModel);
+        pesawat.setListPesawatTeknisi(listAvailableTeknisi);
+
         listAvailableTeknisi.add(new PesawatTeknisiModel());
         pesawat.setListPesawatTeknisi(listAvailableTeknisi);
 
+        model.addAttribute("listPesawatTeknisi", listAvailableTeknisi);
         model.addAttribute("pesawat", pesawat);
         model.addAttribute("listTipe", listTipe);
         model.addAttribute("listTeknisi", listTeknisi);
@@ -116,43 +124,47 @@ public class PesawatController {
 
     @PostMapping("/pesawat/tambah")
     public String submitpesawatform(
-            @ModelAttribute PesawatModel pesawat,
+            @ModelAttribute PesawatModel pesawatModel,
             Model model
     ){
-        TipeModel tipe = tipeService.getTipeById(pesawat.getTipe().getId());
-        pesawat.setTipe(tipe);
+        PesawatModel pesawat = pesawatService.getPesawatByNomorSeri(pesawatModel.getNomorSeri());
+        if(pesawat != null){
+            model.addAttribute("pesawat", pesawatModel);
+            return "home";
+        }
+        for (PesawatTeknisiModel i : pesawatModel.getListPesawatTeknisi()) {
+            i.setPesawat(pesawatModel);
+        }
+        String nomorSeri = pesawatService.generateNomorSeri(pesawatModel);
+        pesawatModel.setNomorSeri(nomorSeri);
+        pesawatService.addPesawat(pesawatModel);
 
-        //getter
-        String jenis_pesawat = pesawat.getJenisPesawat().toString();
-        TipeModel tipe_pesawat = pesawat.getTipe();
-        int tahun = pesawat.getTanggalDibuat().getYear();
+        for (PesawatTeknisiModel i : pesawatModel.getListPesawatTeknisi()) {
+            pesawatTeknisiService.addPesawatTeknisi(i);
+        }
+        String maskapai = pesawatModel.getMaskapai();
 
-        //format year and format no seri
-        String tahun_string = Integer.toString(tahun);
-        String year = reverseString(tahun_string);
-        String added_year = tambah_8(tahun);
-        String random_string = generate_random();
-
-        //Generate id
-        String nomor_seri_fix = nomor_seri(jenis_pesawat, tipe_pesawat, year, added_year, random_string);
-        pesawat.setNomorSeri(nomor_seri_fix);
-
-       //
-
+        model.addAttribute("maskapai", maskapai);
+        model.addAttribute("nomorSeri", nomorSeri);
         return "add-pesawat";
-
     }
+
     @PostMapping(value="/pesawat/tambah", params={"tambahteknisi"})
     public String addmultipleteknisi(
             @ModelAttribute PesawatModel pesawat,
             Model model
     ){
-
-        List<TeknisiModel> allTeknisi = teknisiService.getListTeknisi();
-        model.addAttribute("pesawat", pesawat);
+        PesawatTeknisiModel pesawatTeknisiModel = new PesawatTeknisiModel();
+        if (pesawat.getListPesawatTeknisi()==null){
+            pesawat.setListPesawatTeknisi(new ArrayList<PesawatTeknisiModel>());
+        }
+        pesawat.getListPesawatTeknisi().add(pesawatTeknisiModel);
+        List<TeknisiModel> listTeknisi = teknisiService.getListTeknisi();
         List<TipeModel> allTipe = tipeService.getListTipe();
+
+        model.addAttribute("pesawat", pesawat);
         model.addAttribute("listTipe", allTipe);
-        model.addAttribute("listTeknisi", allTeknisi);
+        model.addAttribute("listTeknisi", listTeknisi);
 
         return "form-add-pesawat";
     }
@@ -203,70 +215,4 @@ public class PesawatController {
         return "cari-pesawat-tua";
     }
 
-    public String nomor_seri(String jenis_pesawat, TipeModel tipe_pesawat, String year, String added_year, String random_string){
-        String a = "";
-
-        //add jenis
-        if(jenis_pesawat == "Komersial"){
-            a += "1";
-        }else{
-            a += "2";
-        }
-        //add tipe
-        if(tipe_pesawat.getNama() =="Boeing"){
-            a+="BO";
-        }
-        else if(tipe_pesawat.getNama() =="ATR"){
-            a+="AT";
-        }
-        else{
-            a+="BB";
-        }
-
-        //add dibalik
-        a+= year;
-
-        //add tahun tambah 8
-        a+= added_year;
-
-        //add 2 random char
-        a+= random_string;
-
-        return a;
-    }
-
-
-    public String reverseString(String str){
-        char ch[]=str.toCharArray();
-        String rev="";
-        for(int i=ch.length-1;i>=0;i--){
-            rev+=ch[i];
-        }
-        return rev;
-    }
-
-    public String tambah_8(int tahun){
-        tahun +=8;
-        return Integer.toString(tahun);
-    }
-
-    public String generate_random() {
-        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-        StringBuilder sb = new StringBuilder(2);
-        for (int i = 0; i < 2; i++) {
-
-            // generate a random number between
-            // 0 to AlphaNumericString variable length
-            int index
-                    = (int) (AlphaNumericString.length()
-                    * Math.random());
-
-            // add Character one by one in end of sb
-            sb.append(AlphaNumericString
-                    .charAt(index));
-        }
-        return sb.toString();
-
-    }
 }

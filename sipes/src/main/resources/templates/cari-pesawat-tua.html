@@ -18,7 +18,6 @@
         <th scope="col">Jenis</th>
         <th scope="col">Tipe</th>
         <th scope="col">Usia</th>
-        <th scope="col">Teknisi</th>
     </tr>
     </thead>
     <tbody>
@@ -30,7 +29,6 @@
         <td th:if="${pesawat.jenisPesawat == 2}">Pribadi</td>
         <td th:text="${pesawat.tipe.getNama()}"></td>
         <td th:text="${pesawat.usia} +' tahun'"></td>
-        <td th:text="${pesawat.listPesawatTeknisi}"></td>
     </tr>
     </tbody>
 </table>

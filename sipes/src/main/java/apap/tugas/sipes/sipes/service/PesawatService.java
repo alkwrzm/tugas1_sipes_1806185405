@@ -25,4 +25,10 @@ public interface PesawatService {
     List<PesawatModel> getListPesawatTua();
 
     void setUsia(List<PesawatModel> pesawat);
+
+    public String generateNomorSeri(PesawatModel pesawat);
+
+    PesawatModel getPesawatByNomorSeri(String nomorSeri);
+
+
 }
