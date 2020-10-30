@@ -26,6 +26,8 @@ public interface PesawatService {
 
     void setUsia(List<PesawatModel> pesawat);
 
+//    void setTeknisi(List<PesawatModel> pesawat);
+
     public String generateNomorSeri(PesawatModel pesawat);
 
     PesawatModel getPesawatByNomorSeri(String nomorSeri);

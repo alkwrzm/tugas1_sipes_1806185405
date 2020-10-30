@@ -58,6 +58,16 @@ public class PesawatModel implements Serializable {
 
     private Integer usia;
 
+    private Integer jumlahTeknisi;
+
+    public Integer getJumlahTeknisi() {
+        return jumlahTeknisi;
+    }
+
+    public void setJumlahTeknisi(Integer jumlahTeknisi) {
+        this.jumlahTeknisi = jumlahTeknisi;
+    }
+
     public Integer getUsia() {
         return usia;
     }

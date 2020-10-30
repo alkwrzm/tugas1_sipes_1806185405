@@ -35,11 +35,6 @@ public class PesawatController {
             Model model){
         PesawatModel pesawat = pesawatService.getPesawatById(idPesawat);
         List<PesawatTeknisiModel> listTeknisiPesawat = pesawat.getListPesawatTeknisi();
-//        List<TeknisiModel> listTeknisi = null;
-//        List<PesawatTeknisiModel> listTeknisiPesawat = pesawat.getListPesawatTeknisi();
-//        for (PesawatTeknisiModel i: listTeknisiPesawat
-//             ) { listTeknisi.add(i.getTeknisi());
-//        }
         List <PenerbanganModel> listPenerbangan = penerbanganService.getListPenerbangan();
         List <PenerbanganModel> listPenerbanganPesawat = pesawat.getListPenerbangan();
         model.addAttribute("listPenerbangan", listPenerbangan);

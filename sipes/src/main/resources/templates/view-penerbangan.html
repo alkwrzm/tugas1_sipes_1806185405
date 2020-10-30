@@ -13,11 +13,48 @@
     <section>
         <div class="card">
             <div class="card-body">
-                <p th:text="'Kode Penerbangan: ' + ${penerbangan.nomorPenerbangan}"></p>
-                <p th:text="'Kode Bandara Asal: ' + ${penerbangan.kodeBandaraAsal}"></p>
-                <p th:text="'Kode Bandara Tujuan: ' + ${penerbangan.kodeBandaraTujuan}"></p>
-                <p th:text="'Waktu Berangkat: ' + ${penerbangan.waktuBerangkat}"></p>
-                <td th:text="'Nomor Seri Pesawat: ' + ${assign}"></td>
+                <div class="container container-list">
+                    <div class="row">
+                        <div id="kode-penerbangan" class="col-2 kode-penerbangan" style="padding-right: unset">
+                            <b><p>Kode Penerbangan:</p></b>
+                        </div>
+                        <div class="col-2">
+                            <p th:text="${penerbangan.nomorPenerbangan}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <b><p>Kode Bandara Asal: </p></b>
+                        </div>
+                        <div class="col-2">
+                            <p th:text="${penerbangan.kodeBandaraAsal}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <b><p>Kode Bandara Tujuan: </p></b>
+                        </div>
+                        <div class="col-2">
+                            <p th:text="${penerbangan.kodeBandaraTujuan}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <b><p>Waktu Berangkat: </p></b>
+                        </div>
+                        <div class="col-2">
+                            <p th:text="${penerbangan.waktuBerangkat}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <b><p>Nomor Seri Pesawat: </p></b>
+                        </div>
+                        <div class="col-2">
+                            <p th:text="${assign}"></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Pesawat</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar('View Pesawat')"></nav>
+<h2>Informasi Pesawat Beserta Jumlah Teknisi</h2>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">No</th>
+        <th scope="col">Nomor Seri</th>
+        <th scope="col">Jenis</th>
+        <th scope="col">Tipe</th>
+        <th scope="col">Maskapai</th>
+        <th scope="col">Jumlah Teknisi</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="pesawat,iterationStatus: ${listPesawat}">
+        <td th:text="${iterationStatus.count}"></td>
+        <td th:text="${pesawat.nomorSeri}"></td>
+        <td th:if="${pesawat.jenisPesawat == 0}">Komersial</td>
+        <td th:if="${pesawat.jenisPesawat == 1}">Militer</td>
+        <td th:if="${pesawat.jenisPesawat == 2}">Pribadi</td>
+        <td th:text="${pesawat.tipe.getNama()}"></td>
+        <td th:text="${pesawat.maskapai}"></td>
+        <td th:text="${#lists.size(pesawat.listPesawatTeknisi)}"></td>
+    </tr>
+    </tbody>
+</table>
+<a class="kembali" th:href="@{/}">Kembali ke Home</a>
+</body>
+</html>

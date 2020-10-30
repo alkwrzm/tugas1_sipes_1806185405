@@ -13,14 +13,58 @@
     <section>
         <div class="card">
             <div class="card-body">
-                <p th:text="'Nomor Seri Pesawat: ' + ${pesawat.nomorSeri}"></p>
-                <p th:if="${pesawat.jenisPesawat == 0}">Jenis Pesawat: Komersial</p>
-                <p th:if="${pesawat.jenisPesawat == 1}">Jenis Pesawat: Militer</p>
-                <p th:if="${pesawat.jenisPesawat == 2}">Jenis Pesawat: Pribadi</p>
-                <p th:text="'Nama Tipe Pesawat: ' + ${pesawat.tipe.nama}"></p>
-                <p th:text="'Maskapai: ' + ${pesawat.maskapai}"></p>
-                <p th:text="'Tempat Dibuat: ' + ${pesawat.tempatDibuat}"></p>
-                <p th:text="'Tanggal Dibuat: ' + ${pesawat.tanggalDibuat}"></p>
+                <div class="container container-list">
+                    <div class="row">
+                        <div class="col-2" style="padding-right: unset">
+                            <b><p>Nomor Seri pesawat: </p></b>
+                        </div>
+                        <div class="col-2">
+                            <p th:text="${pesawat.nomorSeri}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2" style="padding-right: unset">
+                            <b><p>Jenis Pesawat: </p></b>
+                        </div>
+                        <div class="col-2">
+                            <p th:if="${pesawat.jenisPesawat == 0}">Komersial</p>
+                            <p th:if="${pesawat.jenisPesawat == 1}">Militer</p>
+                            <p th:if="${pesawat.jenisPesawat == 2}">Pribadi</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2" style="padding-right: unset">
+                            <b><p>Nama Tipe Pesawat: </p></b>
+                        </div>
+                        <div class="col-2">
+                            <p th:text="${pesawat.tipe.nama}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2" style="padding-right: unset">
+                            <b><p>Maskapai: </p></b>
+                        </div>
+                        <div class="col-2">
+                            <p th:text="${pesawat.maskapai}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2" style="padding-right: unset">
+                            <b><p>Tempat Dibuat: </p></b>
+                        </div>
+                        <div class="col-2">
+                            <p th:text="${pesawat.tempatDibuat}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2" style="padding-right: unset">
+                            <b><p>Tanggal Dibuat: </p></b>
+                        </div>
+                        <div class="col-2">
+                            <p th:text="${pesawat.tanggalDibuat}"></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

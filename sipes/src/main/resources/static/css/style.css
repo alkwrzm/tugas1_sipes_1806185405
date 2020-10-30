@@ -48,3 +48,15 @@ h2{
 .form-penerbangan{
     width: 100%;
 }
+
+.container-list{
+    padding-left: 0px;
+    margin-left: 0px;
+}
+.kode-penerbangan{
+    padding-right: unset;
+}
+
+#kode-penerbangan{
+    padding-right: unset;
+}
