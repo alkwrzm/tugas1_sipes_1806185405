@@ -10,8 +10,8 @@
 <body>
 <nav th:replace="fragments/fragment :: navbar('View All Pesawat')"></nav>
 <h2>Daftar Seluruh Pesawat</h2>
-<a th:href="@{/pesawat/tambah/}" class="btn btn-success">+ Tambah Pesawat</a>
-<table class="table">
+<a th:href="@{/pesawat/tambah/}" class="btn btn-success button-tambah">+ Tambah Pesawat</a>
+<table class="table table-view">
     <thead>
     <tr>
         <th scope="col">No</th>
@@ -23,8 +23,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="pesawat: ${listPesawat}">
-        <td th:text="${pesawat.id}"></td>
+    <tr th:each="pesawat, iterationStatus : ${listPesawat}">
+        <td th:text="${iterationStatus.count}"></td>
         <td th:text="${pesawat.nomorSeri}"></td>
         <td th:text="${pesawat.tipe.getNama()}"></td>
         <td th:if="${pesawat.jenisPesawat == 0}">Komersial</td>
@@ -39,5 +39,8 @@
     </tr>
     </tbody>
 </table>
+<section>
+    <a class="kembali" th:href="@{/}">Kembali ke Home</a>
+</section>
 </body>
 </html>

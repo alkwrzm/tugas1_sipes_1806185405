@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <title>Update Penerbangan</title>
+    <meta charset="UTF-8">
+    <title>404 Not Found</title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-<nav th:replace="fragments/fragment :: navbar('Update Penerbangan')"></nav>
+<nav th:replace="fragments/fragment :: navbar('Error')"></nav>
 <section>
     <div class="card">
         <div class="card-body">
-            <h2 th:text="'Penerbangan ' + ${nomorPenerbangan} + ' berhasil diupdate.'"></h2>
-        </div>
-    </div>
-</section>
-<a class="kembali" href="/penerbangan">Kembali</a>
+            <div class="container-fluid">
+                <h2>Halaman tidak ditemukan</h2>
+                <a th:href="@{/}">Kembali ke Home</a>
+            </div>
+        </div></div></section>
 </body>
 </html>

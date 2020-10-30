@@ -14,56 +14,48 @@
         <div class="card-body">
             <form th:action="@{/pesawat/tambah}" th:object="${pesawat}" method="POST">
                 <input type="hidden" th:field="*{id}">
-                Maskapai<br>
+                <b>Maskapai:</b><br>
                 <input type="text" name="maskapai"/>
                 <br>
-                Tanggal Dibuat<br>
-                <input type="date" name="tanggalDibuat"/>
+                    <b>Tanggal Dibuat:</b><br>
+                <input type="datetime-local" name="tanggalDibuat"/>
                 <br>
-                Tempat Dibuat<br>
+                        <b>Tempat Dibuat:</b><br>
                 <input type="text" name="tempatDibuat"/>
                 <br>
-                Jenis<br>
+                            <b>Jenis:</b><br>
                 <select name="jenisPesawat">
                     <option value="0">Komersial</option>
                     <option value="1">Militer</option>
                     <option value="2">Pribadi</option>
                 </select>
                 <br>
-                Tipe<br>
+                <b>Tipe:</b><br>
                 <select name="tipe" th:field="*{tipe}">
                     <option th:each="i : ${listTipe}" th:value="${i.id}" th:text="${i.nama}">
                     </option>
                 </select>
                 <br>
-                Teknisi<br>
+                <b>Teknisi:</b><br>
                     <input type="hidden" th:field="${pesawat}"/>
-                    <tr th:each="pesawatTeknisi, iterationStatus : *{listPesawatTeknisi}">
+                    <div id="div-form" th:each="pesawatTeknisi, iterationStatus : *{listPesawatTeknisi}">
                         <select class="form-control" th:field="*{listPesawatTeknisi[__${iterationStatus.index}__].teknisi}">
                             <option th:each="pT : ${listTeknisi}" th:text="${pT.nama}" th:value="${pT.id}" ></option>
                         </select>
                         <br style="line-height: 0px">
-                    </tr>
-<!--                    <tr th:each="teknisi, iterationStatus : *{listPesawatTeknisi}">-->
-<!--                        <td>-->
-<!--                            <select name="teknisi" th:field="*{listPesawatTeknisi[__${iterationStatus.index}__]}">-->
-<!--                                <option th:each="i : ${listPesawatTeknisi}" th:value="${i.getTeknisi().nama}" th:text="${i.getTeknisi().nama}">-->
-<!--                                </option>-->
-<!--                            </select>-->
-<!--                        </td>-->
-<!--                        <td>-->
-<!--                            <button th:value="${iterationStatus.index}" class="btn btn-danger" type="submit"-->
-<!--                                    name="deleteRow">Hapus</button>-->
-<!--                        </td>-->
-<!--                    </tr>-->
+                    </div>
                 <section>
+                    <a th:href="@{/pesawat}" class="btn btn-secondary">Batal</a>
                     <button class="btn btn-primary" type="submit" name="tambahteknisi">+ Tambah Teknisi</button>
-                    <a th:href="@{/pesawat}" class="btn btn-outline-secondary btn-lg">Cancel</a>
+                </section>
+                <section>
+                    <br>
                     <button class="btn btn-success" type="submit" name="save">Submit</button>
                 </section>
             </form>
         </div>
     </div>
 </section>
+<a class="kembali" th:href="@{/pesawat}">Kembali</a>
 </body>
 </html>

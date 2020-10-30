@@ -29,13 +29,14 @@ public class PenerbanganController {
             @PathVariable Long idPenerbangan,
             Model model){
         PenerbanganModel penerbangan = penerbanganService.getPenerbanganById(idPenerbangan);
+        String assign = "";
+        if(penerbangan.getPesawat() == null){
+            assign = "Belum diassign pesawat";
+        }else{
+            assign = penerbangan.getPesawat().getNomorSeri();
+        }
         model.addAttribute("penerbangan", penerbangan);
-//        PesawatModel pesawat = penerbangan.getPesawat();
-//        if(pesawat.getNomorSeri() == null){
-//            String noSeri = null;
-//        }
-//        String noSeri = pesawat.getNomorSeri();
-//        model.addAttribute("noSeriPesawat", noSeri);
+        model.addAttribute("assign", assign);
         return "view-penerbangan";
 
     }
@@ -48,13 +49,13 @@ public class PenerbanganController {
         return "viewall-penerbangan";
     }
 
-    @GetMapping("/penerbangan/add")
+    @GetMapping("/penerbangan/tambah")
     private String addPenerbanganFormPage(Model model){
         model.addAttribute("penerbangan", new PenerbanganModel());
         return "form-add-penerbangan";
     }
 
-    @PostMapping("/penerbangan/add")
+    @PostMapping("/penerbangan/tambah")
     private String addPenerbanganSubmit(
             @ModelAttribute PenerbanganModel penerbangan,
             Model model){
@@ -68,10 +69,9 @@ public class PenerbanganController {
     private String deletePenerbanganFromPage(
             @PathVariable Long idPenerbangan,
             Model model){
-        model.addAttribute("idPenerbangan", idPenerbangan);
-
         PenerbanganModel penerbangan = penerbanganService.getPenerbanganById(idPenerbangan);
         penerbanganService.deletePenerbangan(penerbangan);
+        model.addAttribute("nomorPenerbangan", penerbangan.getNomorPenerbangan());
 
         return "delete-penerbangan";
 

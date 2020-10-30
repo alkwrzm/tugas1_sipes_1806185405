@@ -21,8 +21,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="pesawat: ${listPesawat}">
-        <td th:text="${pesawat.id}"></td>
+    <tr th:each="pesawat,iterationStatus: ${listPesawat}">
+        <td th:text="${iterationStatus.count}"></td>
         <td th:text="${pesawat.nomorSeri}"></td>
         <td th:if="${pesawat.jenisPesawat == 0}">Komersial</td>
         <td th:if="${pesawat.jenisPesawat == 1}">Militer</td>
@@ -33,4 +33,5 @@
     </tbody>
 </table>
 </body>
+<a class="kembali" th:href="@{/}">Kembali ke Home</a>
 </html>

@@ -169,13 +169,12 @@ public class PesawatController {
         return "form-add-pesawat";
     }
 
-    @RequestMapping("/pesawat/delete/{idPesawat}")
+    @RequestMapping("/pesawat/hapus/{idPesawat}")
     private String deletePesawatFromPage(
             @PathVariable Long idPesawat,
             Model model){
-        model.addAttribute("idPesawat", idPesawat);
-
         PesawatModel pesawat = pesawatService.getPesawatById(idPesawat);
+        model.addAttribute("maskapai", pesawat.getMaskapai());
         pesawatService.deletePesawat(pesawat);
 
         return "delete-pesawat";
@@ -196,8 +195,13 @@ public class PesawatController {
     private String changePesawatFormSubmit(
             @ModelAttribute PesawatModel pesawat,
             Model model){
+
+
+        String nomorSeri = pesawatService.generateNomorSeri(pesawat);
+        pesawat.setNomorSeri(nomorSeri);
         PesawatModel pesawatModel = pesawatService.updatePesawat(pesawat);
-        model.addAttribute("nomorSeri", pesawat.getNomorSeri());
+        model.addAttribute("pesawat", pesawatModel);
+        model.addAttribute("nomorSeri", nomorSeri);
 
         return "update-pesawat";
     }

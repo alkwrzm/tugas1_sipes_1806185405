@@ -40,7 +40,7 @@ public class PesawatServiceImpl implements PesawatService{
 
     @Override
     public PesawatModel updatePesawat(PesawatModel pesawat) {
-        return null;
+        return pesawatDb.save(pesawat);
     }
 
     @Override
@@ -106,9 +106,9 @@ public class PesawatServiceImpl implements PesawatService{
 
         //tahun dibuat lalu dibalik
         //referensi --> https://www.javatpoint.com/how-to-reverse-string-in-java
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         String third_unrev = dateFormat.format(pesawat.getTanggalDibuat());
-        third_unrev = third_unrev.substring(6);
+        third_unrev = third_unrev.substring(6,10);
         String tahunPesawat = "";
         char ch[] = third_unrev.toCharArray();
         for(int i = ch.length-1;i >= 0;i--){

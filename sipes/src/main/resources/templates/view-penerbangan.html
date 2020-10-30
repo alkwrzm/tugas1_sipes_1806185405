@@ -13,15 +13,14 @@
     <section>
         <div class="card">
             <div class="card-body">
-                <p th:text="'Kode Penerbangan ' + ${penerbangan.nomorPenerbangan}"></p>
-                <p th:text="'Kode Bandara Asal ' + ${penerbangan.kodeBandaraAsal}"></p>
-                <p th:text="'Kode Bandara Tujuan ' + ${penerbangan.kodeBandaraTujuan}"></p>
-                <p th:text="'Waktu Berangkat ' + ${penerbangan.waktuBerangkat}"></p>
-                <td th:text="${noSeriPesawat != null ? penerbangan.noSeriPesawat
-                :  'Belum diassign pesawat'}"></td>
-<!--                <p th:if="${penerbangan.noSeriPesawat == null}">Belum diassign pesawat</p>-->
-<!--                <p th:if="'No Seri Pesawat ' + ${penerabangan.noSeriPesawat}"></p>-->
+                <p th:text="'Kode Penerbangan: ' + ${penerbangan.nomorPenerbangan}"></p>
+                <p th:text="'Kode Bandara Asal: ' + ${penerbangan.kodeBandaraAsal}"></p>
+                <p th:text="'Kode Bandara Tujuan: ' + ${penerbangan.kodeBandaraTujuan}"></p>
+                <p th:text="'Waktu Berangkat: ' + ${penerbangan.waktuBerangkat}"></p>
+                <td th:text="'Nomor Seri Pesawat: ' + ${assign}"></td>
             </div>
         </div>
     </section>
-</div></body>
+</div>
+<a class="kembali" th:href="@{/penerbangan}">Kembali</a>
+</body>

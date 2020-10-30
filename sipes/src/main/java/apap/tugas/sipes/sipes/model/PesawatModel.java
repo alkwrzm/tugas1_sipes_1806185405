@@ -37,7 +37,7 @@ public class PesawatModel implements Serializable {
 
     @NotNull
     @Column(name="tanggalDibuat", nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date tanggalDibuat;
 
     @NotNull

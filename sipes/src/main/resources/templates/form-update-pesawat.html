@@ -14,20 +14,25 @@
         <div class="card-body">
             <form th:action="@{/pesawat/ubah}" th:object="${pesawat}" method="POST">
                 <input type="hidden" th:field="*{id}"/>
-                Maskapai<br>
+                <b>Maskapai:</b><br>
                 <input type="text" name="maskapai" th:value="*{maskapai}"/>
                 <br>
-                Tempat Dibuat<br>
+                    <b>Tempat Dibuat:</b><br>
                 <input type="text" name="tempatDibuat" th:value="*{tempatDibuat}"/>
                 <br>
-                Tanggal Dibuat<br>
-                <input type="date" name="tanggalDibuat" th:value="*{tanggalDibuat}"/>
+                        <b>Tanggal Dibuat:</b><br>
+                <input type="datetime-local" name="tanggalDibuat" th:value="*{{tanggalDibuat}}"/>
                 <br>
-                Jenis Pesawat<br>
-                <input type="text" name="jenisPesawat" th:value="*{jenisPesawat}"/>
+                            <b>Jenis Pesawat:</b><br>
+                <select name="jenisPesawat" th:value="*{jenisPesawat}">
+                    <option value="0">Komersial</option>
+                    <option value="1">Militer</option>
+                    <option value="2">Pribadi</option>
+                </select>
+                <input type="hidden" th:field="*{tipe}">
                 <br><br>
                 <button type="submit" value="Submit">Submit</button>
             </form></div></div></section>
-<a th:href="@{/pesawat}">Kembali ke Home</a>
+<a class="kembali" th:href="@{/pesawat}">Kembali</a>
 </body>
 </html>

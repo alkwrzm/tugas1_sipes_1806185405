@@ -12,21 +12,21 @@
 <section>
     <div class="card">
         <div class="card-body">
-            <form th:action="@{/penerbangan/add}" th:object="${penerbangan}" method="POST">
-                Kode Penerbangan<br>
+            <form th:action="@{/penerbangan/tambah}" th:object="${penerbangan}" method="POST">
+                <b>Kode Penerbangan:</b><br>
                 <input type="text" name="nomorPenerbangan"/>
                 <br>
-                Kode Bandara Asal<br>
+                <b>Kode Bandara Asal:</b><br>
                 <input type="text" name="kodeBandaraAsal"/>
                 <br>
-                Kode Bandara Tujuan<br>
+                    <b>Kode Bandara Tujuan:</b><br>
                 <input type="text" name="kodeBandaraTujuan"/>
                 <br>
-                Waktu Keberangkatan<br>
+                        <b>Waktu Keberangkatan:</b><br>
                 <input type="datetime-local" name="waktuBerangkat"/>
                 <br><br>
                 <button type="submit" value="Submit">Submit</button>
             </form></div></div></section>
-<a th:href="@{/}">Kembali ke Home</a>
+<a class="kembali" th:href="@{/penerbangan}">Kembali</a>
 </body>
 </html>

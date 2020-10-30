@@ -10,8 +10,8 @@
 <body>
 <nav th:replace="fragments/fragment :: navbar('View All Penerbangan')"></nav>
 <h2>Daftar Seluruh Penerbangan</h2>
-<a th:href="@{/penerbangan/add/}" class="btn btn-success">+ Tambah Penerbangan</a>
-<table class="table">
+<a th:href="@{/penerbangan/tambah/}" class="btn btn-success button-tambah">+ Tambah Penerbangan</a>
+<table class="table table-view">
     <thead>
     <tr>
         <th scope="col">No</th>
@@ -23,8 +23,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="penerbangan: ${listPenerbangan}">
-        <td th:text="${penerbangan.id}"></td>
+    <tr th:each="penerbangan, iterationStatus : ${listPenerbangan}">
+        <td th:text="${iterationStatus.count}"></td>
         <td th:text="${penerbangan.nomorPenerbangan}"></td>
         <td th:text="${penerbangan.kodeBandaraAsal}"></td>
         <td th:text="${penerbangan.kodeBandaraTujuan}"></td>
@@ -38,7 +38,7 @@
     </tbody>
 </table>
 <section>
-    <a th:href="@{/}">Kembali ke Home</a>
+    <a class="kembali" th:href="@{/}">Kembali ke Home</a>
 </section>
 </body>
 </html>
