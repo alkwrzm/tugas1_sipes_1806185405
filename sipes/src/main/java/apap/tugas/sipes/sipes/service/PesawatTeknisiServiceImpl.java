@@ -1,7 +1,9 @@
 package apap.tugas.sipes.sipes.service;
 
 
+import apap.tugas.sipes.sipes.model.PesawatModel;
 import apap.tugas.sipes.sipes.model.PesawatTeknisiModel;
+import apap.tugas.sipes.sipes.model.TeknisiModel;
 import apap.tugas.sipes.sipes.repository.PesawatDb;
 import apap.tugas.sipes.sipes.repository.PesawatTeknisiDb;
 import apap.tugas.sipes.sipes.repository.TeknisiDb;
@@ -32,5 +34,10 @@ public class PesawatTeknisiServiceImpl implements PesawatTeknisiService{
     @Override
     public PesawatTeknisiModel addPesawatTeknisi(PesawatTeknisiModel pesawatTeknisi) {
         return pesawatTeknisiDb.save(pesawatTeknisi);
+    }
+
+    @Override
+    public List<PesawatTeknisiModel> getListByPesawatAndTeknisi(PesawatModel pesawat, TeknisiModel teknisiModel) {
+        return pesawatTeknisiDb.findAllByPesawatAndTeknisi(pesawat,teknisiModel);
     }
 }

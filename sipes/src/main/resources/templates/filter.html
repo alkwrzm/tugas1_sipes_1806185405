@@ -10,33 +10,35 @@
 <body>
 <nav th:replace="fragments/fragment :: navbar('Filter Pesawat')"></nav>
 <section>
-    <div class="center">
-    <h2>Cari Pesawat</h2>
-        <form th:action="@{/pesawat/filter}" th:object="${pesawat}" method="POST">
+    <div class="mx-auto" style="width: 200px; border-style: solid;border: #0c0c0c; margin-bottom: 15px">
+        <h2>Cari Pesawat</h2>
+        <form th:action="@{/filter}" method="GET">
             <b>Penerbangan: </b><br>
-            <select name="penerbangan" th:field="${penerbangan}">
-                <option th:each="i : ${listPenerbangan}" th:value="${i.nomorPenerbangan}" th:text="${i.nomorPenerbangan}">
+            <select name="idPenerbangan" class="form-control">
+                <option value="0"> -- </option>
+                <option th:each="i : ${listPenerbangan}" th:value="${i.id}" th:text="${i.nomorPenerbangan}">
                 </option>
             </select>
             <br>
             <b>Tipe: </b><br>
-            <select name="tipe" th:field="${tipe}">
+            <select name="idTipe" class="form-control">
+                <option value="0"> -- </option>
                 <option th:each="i : ${listTipe}" th:value="${i.id}" th:text="${i.nama}">
                 </option>
             </select>
             <br>
-            <b>Teknisi: </b>
-            <select name="teknisi" th:field="${teknisi}">
-                <option th:each="i : ${listTeknisi}" th:value="${i.nama}" th:text="${i.nama}">
-                </option>
-            </select>
+            <b>Teknisi: </b><br>
+<!--            <select name="idTeknisi" class="form-control">-->
+<!--                <option value="0"> &#45;&#45; </option>-->
+<!--                <option th:each="i : ${listTeknisi}" th:value="${i.id}" th:text="${i.nama}">-->
+<!--                </option>-->
+<!--            </select>-->  ##belom bisaaa##
             <br><br>
             <button type="submit" value="Submit">Cari</button>
         </form>
     </div>
 </section>
 <section>
-    <div class="center">
         <table class="table">
     <thead>
     <tr>
@@ -50,20 +52,21 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="pesawat: ${listPesawat}">
-        <td th:text="${pesawat.id}"></td>
+    <div th:if="${notEmpty}">
+    <tr th:each="pesawat, iterationStatus: ${listPesawat}">
+        <td th:text="${iterationStatus.count}"></td>
         <td th:text="${pesawat.nomorSeri}"></td>
         <td th:if="${pesawat.jenisPesawat == 0}">Komersial</td>
         <td th:if="${pesawat.jenisPesawat == 1}">Militer</td>
         <td th:if="${pesawat.jenisPesawat == 2}">Pribadi</td>
         <td th:text="${pesawat.tipe.nama}"></td>
         <td th:text="${pesawat.maskapai}"></td>
-        <td th:text="${pesawat.nomorPenerbangan}"></td>
-        <td th:text="${pesawat.getTeknisi().nama}"></td>
+<!--<td th:text="${nomorPenerbangan}"></td> ##belom bisaa munculin inii 2-->
+<!--        <td th:text="${teknisi}"></td>-->
     </tr>
+    </div>
     </tbody>
 </table>
-    </div>
 </section>
 </body>
 </html>

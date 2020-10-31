@@ -93,26 +93,24 @@ public class PesawatController {
 
     @GetMapping("/pesawat/tambah")
     public String addPesawatFormPage(Model model){
-        PesawatModel pesawat = new PesawatModel();
+
+        PesawatModel pesawatModel = new PesawatModel();
         TeknisiModel teknisiModel = new TeknisiModel();
         PesawatTeknisiModel pesawatTeknisiModel = new PesawatTeknisiModel();
-
-        List<TipeModel> listTipe = tipeService.getListTipe();
-        List<TeknisiModel> listTeknisi = teknisiService.getListTeknisi();
-        List<PesawatTeknisiModel> listAvailableTeknisi = new ArrayList<>();
+        List<PesawatTeknisiModel> listPesawatTeknisiModel = new ArrayList<>();
 
         pesawatTeknisiModel.setTeknisi(teknisiModel);
-        pesawatTeknisiModel.setPesawat(pesawat);
-        listAvailableTeknisi.add(pesawatTeknisiModel);
-        pesawat.setListPesawatTeknisi(listAvailableTeknisi);
+        pesawatTeknisiModel.setPesawat(pesawatModel);
+        listPesawatTeknisiModel.add(pesawatTeknisiModel);
+        pesawatModel.setListPesawatTeknisi(listPesawatTeknisiModel);
 
-        listAvailableTeknisi.add(new PesawatTeknisiModel());
-        pesawat.setListPesawatTeknisi(listAvailableTeknisi);
+        List<TeknisiModel> teknisiModelList = teknisiService.getListTeknisi();
+        List<TipeModel> tipeModel = tipeService.getListTipe();
 
-        model.addAttribute("listPesawatTeknisi", listAvailableTeknisi);
-        model.addAttribute("pesawat", pesawat);
-        model.addAttribute("listTipe", listTipe);
-        model.addAttribute("listTeknisi", listTeknisi);
+        model.addAttribute("listPesawatTeknisi", listPesawatTeknisiModel);
+        model.addAttribute("pesawat", pesawatModel);
+        model.addAttribute("listTipe", tipeModel);
+        model.addAttribute("listTeknisi", teknisiModelList);
 
         return "form-add-pesawat";
     }
@@ -201,17 +199,5 @@ public class PesawatController {
         return "update-pesawat";
     }
 
-    @RequestMapping("/pesawat/filter")
-    public String cariPesawatFilter(
-            @RequestParam(value = "")
-            Model model
-
-    ) {
-        List<PesawatModel> listPesawat = pesawatService.getListPesawatTua();
-        pesawatService.setUsia(listPesawat);
-        model.addAttribute("listPesawat", listPesawat);
-
-        return "cari-pesawat-tua";
-    }
 
 }
