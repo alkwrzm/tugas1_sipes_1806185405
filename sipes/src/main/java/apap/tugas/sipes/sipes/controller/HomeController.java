@@ -49,7 +49,6 @@ public class HomeController {
             @RequestParam(name="idTeknisi") Optional<Long> lidTeknisi,
             Model model
     ){
-        System.out.println("AAAA");
 
         List<PenerbanganModel> allPenerbangan = penerbanganService.getListPenerbangan();
         List<TipeModel> allTipe = tipeService.getListTipe();
@@ -80,10 +79,6 @@ public class HomeController {
         }catch(Exception e){
 
         }
-
-        System.out.println(idPenerbangan);
-        System.out.println(idTipe);
-        System.out.println(idTeknisi);
 
         if((idPenerbangan!=0) || (idTipe!=0) || (idTeknisi!=0)){
             List<PesawatModel> allPesawat = pesawatService.getListPesawat();
@@ -119,9 +114,20 @@ public class HomeController {
                 //3
                 List<TeknisiModel> teknisinya = null;
                 TeknisiModel teknisiGaada = new TeknisiModel();
-//                if(!(idTeknisi == 0)){
-//                    TeknisiModel targetTeknisi = teknisiService.getTeknisiById(idTeknisi);
-//                    List<PesawatTeknisiModel> pTeknisi = p.getListPesawatTeknisi();
+                if(!(idTeknisi == 0)){
+                    TeknisiModel targetTeknisi = teknisiService.getTeknisiById(idTeknisi);
+                    List<PesawatTeknisiModel> targetList = targetTeknisi.getListPesawatTeknisi();
+                    List<PesawatModel> hasil = new ArrayList<>();
+                    for (PesawatTeknisiModel a : targetList
+                    ) {
+                        hasil.add(a.getPesawat());
+                    }
+
+                    if(!hasil.contains(p)){
+                        listPesawat.remove(p);
+                    }
+
+
 //                    for (PesawatTeknisiModel i: pTeknisi
 //                         ) { if (i.getTeknisi()==null){
 //                             teknisinya.add(teknisiGaada);
@@ -134,7 +140,7 @@ public class HomeController {
 //                        listPesawat.remove(p);
 //                        continue;
 //                    }
-//                } ### belom bisa
+                }
             }
             Boolean notEmpty = true;
             if(listPesawat.size()==0) notEmpty = false;

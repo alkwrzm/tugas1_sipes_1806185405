@@ -28,11 +28,11 @@
             </select>
             <br>
             <b>Teknisi: </b><br>
-<!--            <select name="idTeknisi" class="form-control">-->
-<!--                <option value="0"> &#45;&#45; </option>-->
-<!--                <option th:each="i : ${listTeknisi}" th:value="${i.id}" th:text="${i.nama}">-->
-<!--                </option>-->
-<!--            </select>-->  ##belom bisaaa##
+            <select name="idTeknisi" class="form-control">
+                <option value="0"> -- </option>
+                <option th:each="i : ${listTeknisi}" th:value="${i.id}" th:text="${i.nama}">
+                </option>
+            </select>
             <br><br>
             <button type="submit" value="Submit">Cari</button>
         </form>
@@ -52,7 +52,6 @@
     </tr>
     </thead>
     <tbody>
-    <div th:if="${notEmpty}">
     <tr th:each="pesawat, iterationStatus: ${listPesawat}">
         <td th:text="${iterationStatus.count}"></td>
         <td th:text="${pesawat.nomorSeri}"></td>
@@ -61,10 +60,9 @@
         <td th:if="${pesawat.jenisPesawat == 2}">Pribadi</td>
         <td th:text="${pesawat.tipe.nama}"></td>
         <td th:text="${pesawat.maskapai}"></td>
-<!--<td th:text="${nomorPenerbangan}"></td> ##belom bisaa munculin inii 2-->
-<!--        <td th:text="${teknisi}"></td>-->
+<!--        <td th:text="${pesawat.nomorPenerbangan}"></td>-->
+<!--        <td th:text="${pesawat.namaTeknisi}"></td>-->
     </tr>
-    </div>
     </tbody>
 </table>
 </section>
